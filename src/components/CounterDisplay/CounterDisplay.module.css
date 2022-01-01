@@ -1,0 +1,43 @@
+.borderTotalCount {
+    width: 100px;
+    height: 100px;
+    background-image: linear-gradient(40deg, #ff43c0 0%, #ffa95c 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 20px 40px 0 rgba(255, 118, 142, .3);
+}
+
+.borderTotalCount .totalCount {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 20px 40px 0 rgba(255, 118, 142, .3);
+}
+
+.borderTotalCount .totalCount h3 {
+    margin: 0;
+    color: #2a2833;
+    font-weight: 700;
+    line-height: 1em;
+    font-size: 1.6em;
+}
+
+.borderTotalCount .totalCount p {
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    font-size: .7em;
+    margin: 0;
+    line-height: 2em;
+}
+.borderTotalCount .limitCount.totalCount h3 {
+    color: #FF4D4F;
+}
+
+

@@ -1,26 +1,42 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './App.module.css';
+import {CounterDisplay} from "./components/CounterDisplay/CounterDisplay";
+import s from "./App.module.css";
+import Button from "./components/Button/Button";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [count, setCount] = useState<number>(0);
+    const [limitCount, setLimitCount] = useState<number>(5);
+
+    const incrementCount = () => {
+        setCount(count + 1)
+    };
+    const reset = () => {
+        setCount(0)
+    };
+    const isIncDisabled = () => {
+        return count === limitCount
+    };
+    const isResetDisabled = () => {
+        return count < limitCount
+    };
+
+    return (
+        <div className={s.counterWrapper}>
+            <div className={s.displayBlock}>
+                <CounterDisplay count={count} limitCount={limitCount} titleCount={'title'}/>
+            </div>
+            <div className={s.buttonsBlock}>
+                <Button callback={incrementCount} isDisabled={isIncDisabled}>
+                    {'inc'}
+                </Button>
+                <Button red callback={reset} isDisabled={isResetDisabled}>
+                    {'reset'}
+                </Button>
+            </div>
+        </div>
+    );
 }
 
 export default App;
