@@ -19,7 +19,7 @@ function App() {
         return count === limitCount
     };
     const isResetDisabled = () => {
-        return count < limitCount
+        return count < 1
     };
 
     return (
