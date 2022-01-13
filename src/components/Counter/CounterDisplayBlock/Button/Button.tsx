@@ -1,4 +1,4 @@
-import React, {ButtonHTMLAttributes, DetailedHTMLProps} from 'react'
+import React, {ButtonHTMLAttributes, DetailedHTMLProps, MouseEvent} from 'react'
 import s from './Button.module.css'
 import {isDisabled} from "@testing-library/user-event/dist/utils";
 
@@ -7,8 +7,8 @@ type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonE
 
 type SuperButtonPropsType = DefaultButtonPropsType & {
     red?: boolean
-    callback: () => void
-    isDisabled: () => boolean
+    callback: (e:MouseEvent<HTMLButtonElement>) => void
+    isDisabled?: () => boolean | undefined
 }
 
 export const Button: React.FC<SuperButtonPropsType> = ({
@@ -20,15 +20,15 @@ export const Button: React.FC<SuperButtonPropsType> = ({
                                                        }
 ) => {
     const finalClassName = `${red ? s.red : s.default} ${className}`;
-    const onClickHandler = () => {
-        callback();
+    const onClickHandler = (e: MouseEvent<HTMLButtonElement>) => {
+        callback(e);
     };
 
     return (
         <button
             className={finalClassName}
             onClick={onClickHandler}
-            disabled={isDisabled()}
+            disabled={isDisabled && isDisabled()}
             {...restProps} // отдаём кнопке остальные пропсы если они есть (children там внутри)
         />
     )

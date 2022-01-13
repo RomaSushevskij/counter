@@ -1,0 +1,9 @@
+.title {
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    font-size: 1em;
+    margin: 0;
+    line-height: 2em;
+    color: #797979;
+    margin-right: 40px;
+}

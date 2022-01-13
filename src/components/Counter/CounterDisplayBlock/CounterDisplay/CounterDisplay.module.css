@@ -1,6 +1,6 @@
 .borderTotalCount {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     background-image: linear-gradient(40deg, #ff43c0 0%, #ffa95c 100%);
     border-radius: 50%;
     display: flex;
@@ -10,8 +10,8 @@
 }
 
 .borderTotalCount .totalCount {
-    width: 90px;
-    height: 90px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     background-color: #ffffff;
     display: flex;
@@ -19,14 +19,16 @@
     justify-content: center;
     align-items: center;
     box-shadow: inset 0 20px 40px 0 rgba(255, 118, 142, .3);
+    word-break: normal;
+    text-align: center;
 }
 
 .borderTotalCount .totalCount h3 {
     margin: 0;
-    color: #2a2833;
+    color: #797979;
     font-weight: 700;
     line-height: 1em;
-    font-size: 1.6em;
+    font-size: 1.2em;
 }
 
 .borderTotalCount .totalCount p {

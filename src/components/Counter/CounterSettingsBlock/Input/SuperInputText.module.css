@@ -1,0 +1,72 @@
+.inputWrapper {
+    position: relative;
+    padding-bottom: 30px;
+    color: #1c1e21;
+}
+
+.superInput, .errorInput {
+    width: 200px;
+    padding: 11px;
+    outline: none;
+    font-family: SFProDisplay-Regular, Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 16px;
+    border-radius: 5px;
+    margin: 0;
+    border: 1px solid #ccd0d5;
+    transition: all .3s ease;
+}
+
+.superInput:focus {
+    border: 1px solid #007FFF;
+    box-shadow: 0 0 12px rgba(0, 127, 255, .4);
+}
+
+.superInput:focus, .errorInput:focus {
+    transition: all .3s ease;
+}
+
+.error {
+    max-width: 200px;
+    min-width: 100px;
+    background-color: #BE4B49;
+    border: 1px solid #9C3735;
+    display: inline-block;
+    vertical-align: top;
+    top: 3px;
+    right: 105%;
+    padding: 5px 10px;
+    color: #ffffff;
+    position: absolute;
+    border-radius: 3px;
+    box-shadow: 0 0 5px rgba(200, 53, 53, .5);
+    word-wrap: break-word;
+    font-size: 14px;
+}
+
+.error:after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: #BE4B49;
+    position: absolute;
+    top: 10px;
+    right: -5px;
+    transform-origin: 50% 50%;
+    transform: rotate(45deg);
+    box-shadow: 0 0 5px rgba(200, 53, 53, .5);
+
+}
+
+
+
+.superInput.errorInput {
+    border: 1px solid #C83535;
+}
+
+.superInput:focus.errorInput:focus {
+    box-shadow: 0 0 12px rgba(200, 53, 53, .5);
+
+}
+
+
