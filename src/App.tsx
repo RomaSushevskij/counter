@@ -9,18 +9,20 @@ import {Counter} from "./components/Counter/Counter";
 function App() {
     const [value, setValue] = useState<number | string>(0);
 
-
     const [maxValue, setMaxValue] = useState<string>('0');
 
-
     const [startValue, setStartValue] = useState<string>('0');
+
     const errorForMaxValue = !maxValue ? 'Field required' :
+        +maxValue < 0 ? 'Max value should be positive' :
         +maxValue <= +startValue ?
             'Max value should be greater than start' : '';
     const errorForStartValue = !startValue ?'Field required' :
+        +startValue < 0 ? 'Start value should be positive' :
         +maxValue <= +startValue ? 'Start value should be less than max' : '';
 
     const [settingMode, setSettingMode] = useState<boolean>(true);
+    const [isSettingMode, setIsSettingMode] = useState<boolean>(false)
 
     const incrementValue = () => {
         setValue(+value + 1)
@@ -34,13 +36,15 @@ function App() {
     const isResetDisabled = () => {
         return value === +startValue || settingMode
     };
-    const set = (e: MouseEvent<HTMLButtonElement>) => {
+    const set = () => {
         setSettingMode(false);
         setValue(+startValue);
     };
     const isSetDisabled = () => {
        return !!(!settingMode || errorForMaxValue || errorForStartValue)
-
+    };
+    const toggleSettingsBlock = () => {
+        setIsSettingMode(!isSettingMode)
     };
     return (
         <Counter value={value}
@@ -59,6 +63,9 @@ function App() {
                  setSettingMode={setSettingMode}
                  set={set}
                  isSetDisabled={isSetDisabled}
+                 toggleSettingsBlock={toggleSettingsBlock}
+                 isSettingMode={isSettingMode}
+
         />
 
     )

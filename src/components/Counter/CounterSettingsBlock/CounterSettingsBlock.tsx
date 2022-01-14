@@ -13,7 +13,7 @@ export type CounterSettingsBlockPropsType = {
     setStartValue: (startValue: string) => void
     errorForStartValue: string
     setSettingMode:(settingMode:boolean) => void
-    set:(e:MouseEvent<HTMLButtonElement>) => void
+    set:() => void
     isSetDisabled:() => boolean | undefined
 }
 

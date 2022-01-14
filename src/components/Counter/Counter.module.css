@@ -1,3 +1,24 @@
 .wrapper {
-    display: flex;
+    position: relative;
+}
+
+.enter {
+    opacity: 0;
+    transform: translate(200px);
+}
+
+.enterActive {
+    opacity: 1;
+    transform: translate(0);
+    transition: opacity 500ms, transform 500ms;
+}
+
+.exit {
+    opacity: 1;
+}
+
+.exitActive {
+    opacity: 0;
+    transform: translate(260px);
+    transition: opacity 500ms, transform 500ms;
 }

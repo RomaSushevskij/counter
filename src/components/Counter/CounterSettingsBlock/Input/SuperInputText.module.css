@@ -5,7 +5,7 @@
 }
 
 .superInput, .errorInput {
-    width: 200px;
+    width: 150px;
     padding: 11px;
     outline: none;
     font-family: SFProDisplay-Regular, Helvetica, Arial, sans-serif;
@@ -57,7 +57,6 @@
     box-shadow: 0 0 5px rgba(200, 53, 53, .5);
 
 }
-
 
 
 .superInput.errorInput {

@@ -18,14 +18,18 @@ export const CounterDisplayBlock = ({
                                         titleValue,
                                         settingMode,
                                         errorForMaxValue,
-                                        errorForStartValue, ...props
+                                        errorForStartValue,
+                                        toggleSettingsBlock,
+                                        isSettingMode,
+                                        ...props
                                     }: CounterDisplayBlockPropsType) => {
     const finalValue = errorForMaxValue || errorForStartValue ? 'incorrect value' : settingMode ? 'inter values and press \'set\'' : value;
     const isError = !!(errorForMaxValue || errorForStartValue);
+    const isValid = finalValue === 'inter values and press \'set\'';
     return (
         <div className={s.counterWrapper}>
             <div className={s.displayBlock}>
-                <CounterDisplay isError={isError} value={finalValue} maxValue={maxValue} titleValue={titleValue}/>
+                <CounterDisplay isValid={isValid} isError={isError} value={finalValue} maxValue={maxValue} titleValue={titleValue}/>
             </div>
             <div className={s.buttonsBlock}>
                 <Button callback={incrementValue} isDisabled={isIncDisabled}>
@@ -36,7 +40,7 @@ export const CounterDisplayBlock = ({
                 </Button>
             </div>
             <div className={s.settingsBlock}>
-                <FontAwesomeIcon className={s.settingsIcon} icon={faSlidersH} />
+                <FontAwesomeIcon onClick={toggleSettingsBlock} className={s.settingsIcon} icon={faSlidersH} />
             </div>
         </div>
     )

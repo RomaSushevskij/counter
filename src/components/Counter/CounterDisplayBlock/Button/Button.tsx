@@ -7,7 +7,7 @@ type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonE
 
 type SuperButtonPropsType = DefaultButtonPropsType & {
     red?: boolean
-    callback: (e:MouseEvent<HTMLButtonElement>) => void
+    callback: () => void
     isDisabled?: () => boolean | undefined
 }
 
@@ -20,8 +20,8 @@ export const Button: React.FC<SuperButtonPropsType> = ({
                                                        }
 ) => {
     const finalClassName = `${red ? s.red : s.default} ${className}`;
-    const onClickHandler = (e: MouseEvent<HTMLButtonElement>) => {
-        callback(e);
+    const onClickHandler = () => {
+        callback();
     };
 
     return (

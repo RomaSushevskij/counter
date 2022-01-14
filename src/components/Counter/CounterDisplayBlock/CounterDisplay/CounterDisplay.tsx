@@ -4,7 +4,8 @@ type CounterDisplayProps = {
     value: number | string
     maxValue: string
     titleValue: string
-    isError:boolean
+    isError: boolean
+    isValid: boolean
 }
 
 export const CounterDisplay = ({
@@ -12,11 +13,13 @@ export const CounterDisplay = ({
                                    maxValue,
                                    titleValue,
                                    isError,
+                                   isValid,
                                    ...restProps
                                }: CounterDisplayProps) => {
+    const resultClass = isError ? `${s.totalCount} ${s.errorCount}` : isValid ? `${s.totalCount} ${s.validCount}` : value === +maxValue ? `${s.totalCount} ${s.limitCount}` : s.totalCount;
     return (
         <div className={s.borderTotalCount}>
-            <div className={value === +maxValue || isError ? `${s.totalCount} ${s.limitCount}` : s.totalCount}>
+            <div className={resultClass}>
                 <h3>{value}</h3>
                 <p>{titleValue}</p>
             </div>
