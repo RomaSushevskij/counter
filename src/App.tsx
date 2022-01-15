@@ -1,4 +1,4 @@
-import React, {MouseEvent, useState} from 'react';
+import React, {MouseEvent, useEffect, useState} from 'react';
 import logo from './logo.svg';
 import './App.module.css';
 import {CounterDisplay} from "./components/Counter/CounterDisplayBlock/CounterDisplay/CounterDisplay";
@@ -13,13 +13,32 @@ function App() {
 
     const [startValue, setStartValue] = useState<string>('0');
 
+    useEffect(() => {
+        const valueAsString = localStorage.getItem("value");
+        valueAsString && setValue(JSON.parse(valueAsString));
+        const maxValueFromLStorage = localStorage.getItem("maxValue");
+        maxValueFromLStorage && setMaxValue(maxValueFromLStorage);
+        const startValueFromLStorage = localStorage.getItem("startValue");
+        startValueFromLStorage && setStartValue(startValueFromLStorage)
+
+    }, []);
+    useEffect(() => {
+        localStorage.setItem("value", JSON.stringify(value))
+    }, [value])
+    useEffect(() => {
+        localStorage.setItem("startValue", startValue);
+    }, [startValue]);
+    useEffect(() => {
+        localStorage.setItem("maxValue", maxValue)
+    }, [maxValue]);
+
     const errorForMaxValue = !maxValue ? 'Field required' :
         +maxValue < 0 ? 'Max value should be positive' :
-        +maxValue <= +startValue ?
-            'Max value should be greater than start' : '';
-    const errorForStartValue = !startValue ?'Field required' :
+            +maxValue <= +startValue ?
+                'Max value should be greater than start' : '';
+    const errorForStartValue = !startValue ? 'Field required' :
         +startValue < 0 ? 'Start value should be positive' :
-        +maxValue <= +startValue ? 'Start value should be less than max' : '';
+            +maxValue <= +startValue ? 'Start value should be less than max' : '';
 
     const [settingMode, setSettingMode] = useState<boolean>(true);
     const [isSettingMode, setIsSettingMode] = useState<boolean>(false)
@@ -41,7 +60,7 @@ function App() {
         setValue(+startValue);
     };
     const isSetDisabled = () => {
-       return !!(!settingMode || errorForMaxValue || errorForStartValue)
+        return !!(!settingMode || errorForMaxValue || errorForStartValue)
     };
     const toggleSettingsBlock = () => {
         setIsSettingMode(!isSettingMode)
