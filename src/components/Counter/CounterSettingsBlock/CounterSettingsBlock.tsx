@@ -12,9 +12,9 @@ export type CounterSettingsBlockPropsType = {
     startValue: string
     setStartValue: (startValue: string) => void
     errorForStartValue: string
-    setSettingMode:(settingMode:boolean) => void
-    set:() => void
-    isSetDisabled:() => boolean | undefined
+    setSettingMode: (settingMode: boolean) => void
+    set: () => void
+    isSetDisabled: () => boolean | undefined
 }
 
 export const CounterSettingsBlock = ({

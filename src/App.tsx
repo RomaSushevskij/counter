@@ -41,7 +41,8 @@ function App() {
             +maxValue <= +startValue ? 'Start value should be less than max' : '';
 
     const [settingMode, setSettingMode] = useState<boolean>(true);
-    const [isSettingMode, setIsSettingMode] = useState<boolean>(false)
+    const [isSettingMode, setIsSettingMode] = useState<boolean>(true);
+    const [isDisplayMode, setIsDisplayMode] = useState<boolean>(false);
 
     const incrementValue = () => {
         setValue(+value + 1)
@@ -58,12 +59,15 @@ function App() {
     const set = () => {
         setSettingMode(false);
         setValue(+startValue);
+        setIsSettingMode(false);
+        setIsDisplayMode(true);
     };
     const isSetDisabled = () => {
-        return !!(!settingMode || errorForMaxValue || errorForStartValue)
+        return !!(errorForMaxValue || errorForStartValue)
     };
     const toggleSettingsBlock = () => {
-        setIsSettingMode(!isSettingMode)
+        setIsSettingMode(true);
+        setIsDisplayMode(false);
     };
     return (
         <Counter value={value}
@@ -84,9 +88,8 @@ function App() {
                  isSetDisabled={isSetDisabled}
                  toggleSettingsBlock={toggleSettingsBlock}
                  isSettingMode={isSettingMode}
-
+                 isDisplayMode={isDisplayMode}
         />
-
     )
 }
 

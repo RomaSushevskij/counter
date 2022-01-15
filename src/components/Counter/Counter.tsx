@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./Counter.module.css";
+import style from "./Counter.module.css";
 import {CounterDisplayBlock} from "./CounterDisplayBlock/CounterDisplayBlock";
 import {CounterSettingsBlock} from "./CounterSettingsBlock/CounterSettingsBlock";
 import {CSSTransition} from "react-transition-group";
@@ -24,15 +24,16 @@ export type CounterPropsType = {
     isSetDisabled: () => boolean | undefined
     toggleSettingsBlock: () => void
     isSettingMode: boolean
+    isDisplayMode: boolean
 }
 
 export const Counter = (props: CounterPropsType) => {
 
     return (
-        <div className={s.wrapper}>
+        <div className={style.wrapper}>
             <CSSTransition in={props.isSettingMode}
-                           classNames={s}
-                           timeout={500}
+                           classNames={style}
+                           timeout={600}
                            unmountOnExit
                            mountOnEnter>
                 <CounterSettingsBlock maxValue={props.maxValue}
@@ -46,7 +47,13 @@ export const Counter = (props: CounterPropsType) => {
                                       isSetDisabled={props.isSetDisabled}
                 />
             </CSSTransition>
-            <CounterDisplayBlock {...props}/>
+            <CSSTransition in={props.isDisplayMode}
+                           classNames={style}
+                           timeout={600}
+                           unmountOnExit
+                           mountOnEnter>
+                <CounterDisplayBlock {...props}/>
+            </CSSTransition>
         </div>
     );
 };

@@ -29,7 +29,8 @@ export const CounterDisplayBlock = ({
     return (
         <div className={s.counterWrapper}>
             <div className={s.displayBlock}>
-                <CounterDisplay isValid={isValid} isError={isError} value={finalValue} maxValue={maxValue} titleValue={titleValue}/>
+                <CounterDisplay isValid={isValid} isError={isError} value={finalValue} maxValue={maxValue}
+                                titleValue={titleValue}/>
             </div>
             <div className={s.buttonsBlock}>
                 <Button callback={incrementValue} isDisabled={isIncDisabled}>
@@ -40,7 +41,7 @@ export const CounterDisplayBlock = ({
                 </Button>
             </div>
             <div className={s.settingsBlock}>
-                <FontAwesomeIcon onClick={toggleSettingsBlock} className={s.settingsIcon} icon={faSlidersH} />
+                <FontAwesomeIcon onClick={() => toggleSettingsBlock()} className={s.settingsIcon} icon={faSlidersH}/>
             </div>
         </div>
     )

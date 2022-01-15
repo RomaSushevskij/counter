@@ -1,16 +1,19 @@
 .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
 }
 
 .enter {
     opacity: 0;
-    transform: translate(200px);
+    transform: scale(0.9);
 }
 
 .enterActive {
     opacity: 1;
-    transform: translate(0);
-    transition: opacity 500ms, transform 500ms;
+    transform: translateX(0);
+    transition: opacity 600ms, transform 600ms;
 }
 
 .exit {
@@ -19,6 +22,7 @@
 
 .exitActive {
     opacity: 0;
-    transform: translate(260px);
-    transition: opacity 500ms, transform 500ms;
+    transform: scale(0.9);
+    transition: opacity 600ms, transform 600ms;
 }
+
