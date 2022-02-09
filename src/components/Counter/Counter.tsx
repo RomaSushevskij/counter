@@ -18,19 +18,19 @@ export type CounterPropsType = {
     isIncDisabled: () => boolean
     isResetDisabled: () => boolean
     titleValue: string
-    settingMode: boolean
-    setSettingMode: (settingMode: boolean) => void
+    inChangingValuesProcess: boolean
+    setInChangingValuesProcess: (settingMode: boolean) => void
     set: () => void
     isSetDisabled: () => boolean | undefined
     toggleSettingsBlock: () => void
-    isSettingMode: boolean
+    isSettingModeOpen: boolean
 }
 
 export const Counter = (props: CounterPropsType) => {
 
     return (
         <div className={s.wrapper}>
-            <CSSTransition in={props.isSettingMode}
+            <CSSTransition in={props.isSettingModeOpen}
                            classNames={s}
                            timeout={500}
                            unmountOnExit
@@ -41,7 +41,7 @@ export const Counter = (props: CounterPropsType) => {
                                       startValue={props.startValue}
                                       setStartValue={props.setStartValue}
                                       errorForStartValue={props.errorForStartValue}
-                                      setSettingMode={props.setSettingMode}
+                                      setInChangingValuesProcess={props.setInChangingValuesProcess}
                                       set={props.set}
                                       isSetDisabled={props.isSetDisabled}
                 />

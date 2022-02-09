@@ -16,14 +16,13 @@ export const CounterDisplayBlock = ({
                                         isResetDisabled,
                                         reset,
                                         titleValue,
-                                        settingMode,
+                                        inChangingValuesProcess,
                                         errorForMaxValue,
                                         errorForStartValue,
                                         toggleSettingsBlock,
-                                        isSettingMode,
                                         ...props
                                     }: CounterDisplayBlockPropsType) => {
-    const finalValue = errorForMaxValue || errorForStartValue ? 'incorrect value' : settingMode ? 'inter values and press \'set\'' : value;
+    const finalValue = errorForMaxValue || errorForStartValue ? 'incorrect value' : inChangingValuesProcess ? 'inter values and press \'set\'' : value;
     const isError = !!(errorForMaxValue || errorForStartValue);
     const isValid = finalValue === 'inter values and press \'set\'';
     return (

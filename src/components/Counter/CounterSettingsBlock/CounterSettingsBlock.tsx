@@ -12,7 +12,7 @@ export type CounterSettingsBlockPropsType = {
     startValue: string
     setStartValue: (startValue: string) => void
     errorForStartValue: string
-    setSettingMode:(settingMode:boolean) => void
+    setInChangingValuesProcess:(settingMode:boolean) => void
     set:() => void
     isSetDisabled:() => boolean | undefined
 }
@@ -24,7 +24,7 @@ export const CounterSettingsBlock = ({
                                          startValue,
                                          setStartValue,
                                          errorForStartValue,
-                                         setSettingMode,
+                                         setInChangingValuesProcess,
                                          set,
                                          isSetDisabled,
                                          ...props
@@ -38,7 +38,7 @@ export const CounterSettingsBlock = ({
                         max value
                     </div>
                     <Input value={maxValue}
-                           setSettingMode={setSettingMode}
+                           setInChangingValuesProcess={setInChangingValuesProcess}
                            onChangeText={setMaxValue}
                            onEnter={() => {
                            }}
@@ -48,8 +48,8 @@ export const CounterSettingsBlock = ({
                     <div className={style.title}>
                         start value
                     </div>
-                    <Input value={startValue}
-                           setSettingMode={setSettingMode}
+                    <Input value={Number(startValue)}
+                           setInChangingValuesProcess={setInChangingValuesProcess}
                            onChangeText={setStartValue}
                            onEnter={() => {
                            }}
