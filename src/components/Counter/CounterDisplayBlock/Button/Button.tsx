@@ -8,7 +8,7 @@ type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonE
 type SuperButtonPropsType = DefaultButtonPropsType & {
     red?: boolean
     callback: () => void
-    isDisabled?: () => boolean | undefined
+    isDisabled?: boolean
 }
 
 export const Button: React.FC<SuperButtonPropsType> = ({
@@ -28,7 +28,7 @@ export const Button: React.FC<SuperButtonPropsType> = ({
         <button
             className={finalClassName}
             onClick={onClickHandler}
-            disabled={isDisabled && isDisabled()}
+            disabled={isDisabled && isDisabled}
             {...restProps} // отдаём кнопке остальные пропсы если они есть (children там внутри)
         />
     )

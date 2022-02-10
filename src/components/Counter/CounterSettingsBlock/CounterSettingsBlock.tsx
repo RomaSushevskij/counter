@@ -1,20 +1,21 @@
-import {CounterDisplayBlock} from "../CounterDisplayBlock/CounterDisplayBlock";
 import s from "../CounterDisplayBlock/CounterDisplayBlock.module.css";
 import style from './CounterSettingsBlock.module.css'
-import React, {MouseEvent, useState} from "react";
+import React, {useEffect} from "react";
 import Input from "./Input/Input";
 import Button from "../CounterDisplayBlock/Button/Button";
 
 export type CounterSettingsBlockPropsType = {
     maxValue: string
     setMaxValue: (maxValue: string) => void
-    errorForMaxValue: string
     startValue: string
     setStartValue: (startValue: string) => void
+    errorForMaxValue: string
     errorForStartValue: string
-    setInChangingValuesProcess:(settingMode:boolean) => void
-    set:() => void
-    isSetDisabled:() => boolean | undefined
+    checkValidationForStartValue: (maxValue: string, startValue: string) => void
+    checkValidationForMaxValue: (maxValue: string, startValue: string) => void
+    setInChangingValuesProcess: (settingMode: boolean) => void
+    set: () => void
+    isSetDisabled: boolean
 }
 
 export const CounterSettingsBlock = ({
@@ -24,11 +25,19 @@ export const CounterSettingsBlock = ({
                                          startValue,
                                          setStartValue,
                                          errorForStartValue,
+                                         checkValidationForStartValue,
+                                         checkValidationForMaxValue,
                                          setInChangingValuesProcess,
                                          set,
                                          isSetDisabled,
                                          ...props
                                      }: CounterSettingsBlockPropsType) => {
+
+    useEffect(() => {
+        setInChangingValuesProcess(true)
+        checkValidationForMaxValue(maxValue, startValue)
+        checkValidationForStartValue(maxValue, startValue)
+    }, [maxValue, startValue])
 
     return (
         <>
@@ -38,7 +47,6 @@ export const CounterSettingsBlock = ({
                         max value
                     </div>
                     <Input value={maxValue}
-                           setInChangingValuesProcess={setInChangingValuesProcess}
                            onChangeText={setMaxValue}
                            onEnter={() => {
                            }}
@@ -48,8 +56,7 @@ export const CounterSettingsBlock = ({
                     <div className={style.title}>
                         start value
                     </div>
-                    <Input value={Number(startValue)}
-                           setInChangingValuesProcess={setInChangingValuesProcess}
+                    <Input value={startValue}
                            onChangeText={setStartValue}
                            onEnter={() => {
                            }}

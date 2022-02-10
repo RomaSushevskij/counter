@@ -6,47 +6,86 @@ import {CSSTransition} from "react-transition-group";
 
 
 export type CounterPropsType = {
-    value: number | string
+    valueForDisplay: number
     maxValue: string
     setMaxValue: (maxValue: string) => void
-    errorForMaxValue: string
     startValue: string
     setStartValue: (startValue: string) => void
+    errorForMaxValue: string
+    setErrorForMaxValue: (errorForMaxValue: string) => void
     errorForStartValue: string
+    setErrorForStartValue: (errorForStartValue: string) => void
+    checkValidationForStartValue: (maxValue: string, startValue: string) => void
+    checkValidationForMaxValue: (maxValue: string, startValue: string) => void
     incrementValue: () => void
     reset: () => void
-    isIncDisabled: () => boolean
-    isResetDisabled: () => boolean
-    titleValue: string
+    set: () => void
+    isIncDisabled: boolean
+    isResetDisabled: boolean
+    isSetDisabled: boolean
+    isSettingModeOpen: boolean
+    toggleSettingsBlock: () => void
     inChangingValuesProcess: boolean
     setInChangingValuesProcess: (settingMode: boolean) => void
-    set: () => void
-    isSetDisabled: () => boolean | undefined
-    toggleSettingsBlock: () => void
-    isSettingModeOpen: boolean
+    titleValue: string
 }
 
-export const Counter = (props: CounterPropsType) => {
+export const Counter = ({
+                            valueForDisplay,
+                            maxValue,
+                            setMaxValue,
+                            startValue,
+                            setStartValue,
+                            errorForMaxValue,
+                            setErrorForMaxValue,
+                            errorForStartValue,
+                            setErrorForStartValue,
+                            checkValidationForStartValue,
+                            checkValidationForMaxValue,
+                            incrementValue,
+                            reset,
+                            set,
+                            isIncDisabled,
+                            isResetDisabled,
+                            isSetDisabled,
+                            isSettingModeOpen,
+                            toggleSettingsBlock,
+                            inChangingValuesProcess,
+                            setInChangingValuesProcess,
+                            titleValue, ...props
+                        }: CounterPropsType) => {
 
     return (
         <div className={s.wrapper}>
-            <CSSTransition in={props.isSettingModeOpen}
+            <CSSTransition in={isSettingModeOpen}
                            classNames={s}
                            timeout={500}
                            unmountOnExit
                            mountOnEnter>
-                <CounterSettingsBlock maxValue={props.maxValue}
-                                      setMaxValue={props.setMaxValue}
-                                      errorForMaxValue={props.errorForMaxValue}
-                                      startValue={props.startValue}
-                                      setStartValue={props.setStartValue}
-                                      errorForStartValue={props.errorForStartValue}
-                                      setInChangingValuesProcess={props.setInChangingValuesProcess}
-                                      set={props.set}
-                                      isSetDisabled={props.isSetDisabled}
+                <CounterSettingsBlock startValue={startValue}
+                                      setStartValue={setStartValue}
+                                      maxValue={maxValue}
+                                      setMaxValue={setMaxValue}
+                                      errorForMaxValue={errorForMaxValue}
+                                      errorForStartValue={errorForStartValue}
+                                      checkValidationForStartValue={checkValidationForStartValue}
+                                      checkValidationForMaxValue={checkValidationForMaxValue}
+                                      setInChangingValuesProcess={setInChangingValuesProcess}
+                                      set={set}
+                                      isSetDisabled={isSetDisabled}
                 />
             </CSSTransition>
-            <CounterDisplayBlock {...props}/>
+            <CounterDisplayBlock valueForDisplay={valueForDisplay}
+                                 maxValue={maxValue}
+                                 incrementValue={incrementValue}
+                                 isIncDisabled={isIncDisabled}
+                                 isResetDisabled={isResetDisabled}
+                                 reset={reset}
+                                 titleValue={titleValue}
+                                 inChangingValuesProcess={inChangingValuesProcess}
+                                 errorForMaxValue={errorForMaxValue}
+                                 errorForStartValue={errorForStartValue}
+                                 toggleSettingsBlock={toggleSettingsBlock}/>
         </div>
     );
 };

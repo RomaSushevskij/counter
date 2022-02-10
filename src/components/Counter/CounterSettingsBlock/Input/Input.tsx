@@ -11,7 +11,6 @@ type SuperInputTextPropsType = DefaultInputPropsType & { // и + ещё проп
     onEnter?: () => void
     error?: string
     spanClassName?: string
-    setInChangingValuesProcess?:(settingMode: boolean) => void
 }
 
 const Input: React.FC<SuperInputTextPropsType> = (
@@ -21,7 +20,7 @@ const Input: React.FC<SuperInputTextPropsType> = (
         onKeyPress, onEnter,
         error,
         className, spanClassName, name, title,
-        setInChangingValuesProcess,
+
 
 
         ...restProps// все остальные пропсы попадут в объект restProps
@@ -30,9 +29,7 @@ const Input: React.FC<SuperInputTextPropsType> = (
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
         onChange // если есть пропс onChange
         && onChange(e); // то передать ему е (поскольку onChange не обязателен)
-
-        onChangeText && onChangeText(e.currentTarget.value);
-        setInChangingValuesProcess && setInChangingValuesProcess(true)
+        onChangeText && onChangeText(e.currentTarget.value)
 
     };
     const onKeyPressCallback = (e: KeyboardEvent<HTMLInputElement>) => {
